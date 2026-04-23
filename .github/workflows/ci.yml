@@ -5,12 +5,14 @@ name: CI
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main
+    tags:
+      - '*'
 
 jobs:
   deploy-docker:
+    if: github.event.created == true && startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -29,7 +31,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           # Pass build arguments:
           build-args: |
             ROS_DISTRO=jazzy
