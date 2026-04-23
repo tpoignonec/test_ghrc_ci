@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: .docker/dockerfile
+          file: .docker/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           # Pass build arguments:
