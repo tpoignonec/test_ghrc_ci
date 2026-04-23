@@ -31,4 +31,4 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           # Pass build arguments:
           build-args: |
-            ROS_DISTRO=jazzy
+            ROS_DISTRO=kilted
